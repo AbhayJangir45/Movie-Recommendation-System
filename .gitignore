@@ -1,0 +1,25 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.venv/
+venv/
+ENV/
+.env
+
+# macOS
+.DS_Store
+
+# Python data files
+*.pkl
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+
+# log files
+*.log

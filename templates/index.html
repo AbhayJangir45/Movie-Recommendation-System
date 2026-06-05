@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Recommendation System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Movie Recommendation System</h1>
+
+    <form method="POST">
+
+        <select name="movie" required>
+
+            <option value="">Select a Movie</option>
+
+            {% for movie in movie_list %}
+                <option value="{{ movie }}"
+                {% if selected_movie == movie %}selected{% endif %}>
+                    {{ movie }}
+                </option>
+            {% endfor %}
+
+        </select>
+
+        <button type="submit">Recommend</button>
+
+    </form>
+
+    {% if selected_movie %}
+    <div class="results">
+        <h2>Selected Movie</h2>
+        <p>{{ selected_movie }}</p>
+        {% if selected_movie_poster %}
+            <div class="poster-card">
+                <img src="{{ selected_movie_poster }}" alt="Poster for {{ selected_movie }}">
+            </div>
+        {% endif %}
+    </div>
+    {% endif %}
+
+    {% if recommendations %}
+
+    <div class="results">
+
+        <h2>Recommended Movies</h2>
+
+        <div class="poster-grid">
+            {% for item in recommendations %}
+                <div class="poster-grid-item">
+                    <div class="poster-title">{{ item.title }}</div>
+                    {% if item.poster %}
+                        <img src="{{ item.poster }}" alt="Poster for {{ item.title }}">
+                    {% else %}
+                        <div class="poster-placeholder">No poster available</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
